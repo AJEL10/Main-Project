@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Forgot Password</title>
+    <link rel="stylesheet" href="{% static "./style.css" %}">
+    <style>
+        /* Add your CSS styles here if needed */
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center horizontally */
+            justify-content: center; /* Center vertically */
+            height: 100vh; /* Full viewport height */
+        }
+        
+        .box {
+            border: 2px solid #ccc;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .box:hover {
+            transform: scale(1.05);
+        }
+
+        .submit-button {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box">
+            <h2>Forgot Password</h2>
+            <p>Enter your email address to reset your password.</p>
+            <form id="forgotPasswordForm">
+                <label>
+                    <span>Email</span>
+                    <input type="email" id="forgotEmail" required />
+                </label>
+                <button type="button" onclick="sendOTP()">Send OTP</button>
+                <!-- OTP input field (initially hidden) -->
+                <div id="otpSection" style="display: none;">
+                    <p>An OTP has been sent to your email. Enter it below to reset your password.</p>
+                    <input type="text" id="otpInput" placeholder="Enter OTP" required />
+                    <button type="button" onclick="verifyOTP()">Verify OTP</button>
+                </div>
+            </form>
+        </div>
+        <!-- Submit button outside the box -->
+        <button type="submit" class="submit-button" style="display: none;" id="submitButton">Submit</button>
+    </div>
+
+    <script>
+        // Simulated OTP generation and email sending
+        function sendOTP() {
+            const email = document.getElementById('forgotEmail').value;
+            // Generate a random 6-digit OTP
+            const otp = Math.floor(100000 + Math.random() * 900000);
+
+            // Simulate sending the OTP to the user's email (you would use your own email sending method)
+            alert(`Simulated OTP sent to ${email}: ${otp}`);
+
+            // Show the OTP input section
+            document.getElementById('otpSection').style.display = 'block';
+
+            // Show the submit button
+            document.getElementById('submitButton').style.display = 'block';
+        }
+
+        // Simulated OTP verification
+        function verifyOTP() {
+            const enteredOTP = document.getElementById('otpInput').value;
+            const expectedOTP = /* Retrieve the expected OTP (sent to the user's email) */;
+
+            if (enteredOTP === expectedOTP) {
+                // OTP is correct, allow password reset (you can redirect to a password reset page)
+                alert('OTP verified. You can reset your password now.');
+            } else {
+                // OTP is incorrect
+                alert('Invalid OTP. Please try again.');
+            }
+        }
+    </script>
+</body>
+</html>
