@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dental Clinic Signup</title>
+    <link rel="stylesheet" href="cl.css">
+    <script src="https://cdn.jsdelivr.net/npm/countries-list@2.8.3/dist/countries.js"></script>
+
+
+</head>
+<body>
+    <div class="container">
+        <form id="clinicSignupForm" class="form" action="doctor-details.html">
+            <h2>Dental Clinic Signup</h2>
+            <div class="input-container">
+                <label for="clinicId">Clinic ID</label>
+                <input type="text" id="clinicId" name="clinicId" required>
+            </div>
+            <div class="input-container">
+                <label for="clinicLocation">Clinic Location</label>
+                <div class="location-columns">
+                    <select id="country" name="country" required>
+                        <option value="India">India</option>
+                        <option value="United States">United States</option>
+                        <option value="Canada">Canada</option>
+                        <option value="United Kingdom">United Kingdom</option>
+                        <option value="Australia">Australia</option>
+                        <!-- Add more countries as needed -->
+                    </select>
+                    
+                    <select id="state" name="state" required>
+                        <!-- State options will be populated dynamically based on the selected country -->
+                    </select>
+                    <select id="district" name="district" required>
+                        <!-- District options will be populated dynamically based on the selected state -->
+                    </select>
+                    <input type="number" id="pincode" name="pincode" placeholder="Pin Code" required>
+                </div>
+            </div>
+            <div class="input-container">
+                <label for="clinicMail">Clinic Email</label>
+                <input type="email" id="clinicMail" name="clinicMail" required>
+            </div>
+            <div class="input-container">
+                <label for="clinicPassword">Password</label>
+                <input type="password" id="clinicPassword" name="clinicPassword" required>
+            </div>
+            <div class="input-container">
+                <label for="servicesOffered">Services Offered</label>
+                <textarea id="servicesOffered" name="servicesOffered" rows="4" required></textarea>
+            </div>
+            <div class="button-container">
+                <button type="submit">Next</button>
+            </div>
+        </form>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html>

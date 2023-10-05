@@ -1,0 +1,544 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>SmileSphere</title>
+    <link rel="shortcut icon" href="{% static "assets/images/fav.png" %}" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="{% static "assets/images/fav.jpg" %}">
+    <link rel="stylesheet" href="{% static "assets/css/bootstrap.min.css" %}">
+    <link rel="stylesheet" href="{% static "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" %}">
+    <link rel="stylesheet" href="{% static "assets/css/all.min.css" %}">
+    <link rel="stylesheet" href="{% static "assets/plugins/testimonial/css/owl.carousel.min.css" %}">
+    <link rel="stylesheet" href="{% static "assets/plugins/testimonial/css/owl.theme.min.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "assets/css/style.css" %}" />
+    <style>
+        /* Add your CSS styles here */
+
+        /* Common styles */
+        body {
+            font-family: 'Ubuntu', sans-serif;
+        }
+
+        /* Header styles */
+        header {
+            background-color: #fff;
+            padding: 10px 0;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .head-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logocol h1 {
+            font-size: 24px;
+            color: brown;
+        }
+
+        .navcol ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+        }
+
+        .navcol li {
+            margin-right: 20px;
+        }
+
+        .navcol a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        /* Slider styles */
+        .slider {
+            background: url('{% static "assets/images/dental-cleaning-980x654.jpeg" %}') center/cover no-repeat;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+        }
+
+        .slid-row {
+            padding: 0 15px;
+        }
+
+        .left-col {
+            flex: 1;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .left-col h6 {
+            font-size: 14px;
+            color: brown;
+            margin-bottom: 10px;
+        }
+
+        .left-col h1 {
+            font-size: 36px;
+            margin: 10px 0;
+        }
+
+        .left-col a {
+            display: inline-block;
+            background-color: brown;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .right-col img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Services styles */
+        .services {
+            background-color: #f5f5f5;
+            padding: 60px 0;
+        }
+
+        .section-title h2 {
+            font-size: 24px;
+            margin-bottom: 30px;
+            color: #333;
+            text-align: center;
+        }
+
+        .section-title p {
+            font-size: 16px;
+            color: #666;
+            text-align: center;
+        }
+
+        .servic-row {
+            margin-top: 30px;
+        }
+
+        .servic-col {
+            padding: 20px;
+        }
+
+        .servcover {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .servcover img {
+            max-width: 80px;
+            margin-bottom: 20px;
+        }
+
+        .servcover h4 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .servcover p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Testimonial styles */
+        .testimonial-container {
+            background-color: #fff;
+            padding: 60px 0;
+        }
+
+        .testimonial {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial .pic img {
+            max-width: 80px;
+            border-radius: 50%;
+        }
+
+        .testimonial .description {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .testimonial .title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* About section styles */
+        .about-container {
+            background-color: #f5f5f5;
+            padding: 60px 0;
+        }
+
+        .aboutlefft h2 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .aboutlefft p {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .aboutlefft ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .aboutlefft ul li {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .imgright img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Blog section styles */
+        .blog {
+            background-color: #fff;
+            padding: 60px 0;
+        }
+
+        .blog h2 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .blog p {
+            font-size: 16px;
+            color: #666;
+            text-align: center;
+        }
+
+        .blog-row {
+            margin-top: 30px;
+        }
+
+        .blogcol {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .blogcol img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .blogcol span {
+            font-size: 14px;
+            color: brown;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .blogcol h4 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        /* Footer styles */
+        .footer {
+            background-color: #f5f5f5;
+            padding: 60px 0;
+        }
+
+        .footer h2 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .footer p {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .link-list li {
+            list-style: none;
+            margin-bottom: 10px;
+        }
+
+        .link-list li a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .map-img {
+            text-align: right;
+        }
+
+        /* Copy section styles */
+        .copy {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .copy a {
+            text-decoration: none;
+            color: #fff;
+            margin: 0 10px;
+        }
+
+        /* Media queries */
+        @media (max-width: 767px) {
+            /* Adjust styles for smaller screens */
+            .head-container {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .logocol {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            .logocol h1 {
+                font-size: 20px;
+            }
+
+            .navcol {
+                text-align: center;
+            }
+
+            .navcol ul {
+                flex-direction: column;
+            }
+
+            .navcol li {
+                margin: 10px 0;
+            }
+
+            .slider {
+                min-height: 400px;
+            }
+
+            .left-col {
+                padding: 10px;
+            }
+
+            .left-col h1 {
+                font-size: 28px;
+                margin: 10px 0;
+            }
+
+            .left-col a {
+                font-size: 12px;
+                padding: 8px 15px;
+            }
+
+            .right-col img {
+                max-width: 100%;
+                height: auto;
+            }
+
+            .servic-col {
+                padding: 10px;
+            }
+
+            .servcover h4 {
+                font-size: 16px;
+            }
+
+            .servcover p {
+                font-size: 12px;
+            }
+
+            .testimonial .description {
+                font-size: 12px;
+                margin-bottom: 10px;
+            }
+
+            .testimonial .title {
+                font-size: 14px;
+            }
+
+            .aboutlefft h2 {
+                font-size: 20px;
+            }
+
+            .aboutlefft p {
+                font-size: 14px;
+            }
+
+            .aboutlefft ul li {
+                font-size: 12px;
+            }
+
+            .blog h2 {
+                font-size: 20px;
+                margin-bottom: 20px;
+            }
+
+            .blog p {
+                font-size: 14px;
+            }
+
+            .blogcol span {
+                font-size: 12px;
+            }
+
+            .blogcol h4 {
+                font-size: 16px;
+            }
+
+            .map-img {
+                text-align: center;
+            }
+
+            .copy {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+
+
+          <!--  ************************* Page Title Starts Here ************************** -->
+    <div class="page-nav no-margin row">
+        <div class="container">
+            <div class="row">
+                <h2>Our Blog</h2>
+                <ul>
+                    <li> <a href="#"><i class="fas fa-home"></i> Home</a></li>
+                    <li><i class="fas fa-angle-double-right"></i> Our Blog</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+     
+  <!--  ************************* Blog Start Here ************************** -->
+   
+   
+    <div class="blog container-fluid">
+            <div class="container">
+                <div class="section-title row">
+                    <h2>Our Latest Blog</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sollicitudin nisi id consequat bibendum. Phasellus at convallis elit. In purus enim, scelerisque id arcu vitae</p>
+                </div>
+                <div class="row mt-5 blog-row">
+                    <div class="col-md-4">
+                        <div class="blogcol">
+                            <img src="{% static "assets/images/blog/b1.jpg" %}" alt="">
+                            <span>Oct 12, 2019</span>
+                            <h4>Journeys Are Best Measured In New Best Measured Friends</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="blogcol">
+                            <img src="{% static "assets/images/blog/b2.jpg" %}" alt="">
+                            <span>Oct 12, 2019</span>
+                            <h4>Morbi sollicitudin nisi id consequat bibendum</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="blogcol">
+                            <img src="{% static "assets/images/blog/b3.jpg" %}" alt="">
+                            <span>Oct 12, 2019</span>
+                            <h4>Journeys Are Best Measured In New Best Measured In  Friends</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <!--  ************************* Footer Start Here ************************** -->
+        
+          <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-sm-12">
+                        <h2>About Us</h2>
+                        <p>
+                            One of the essential qualities of a professional doctor is his humanity.
+                        </p>
+                        <p>We at SmileSphere are dedicated to provide anxiety-free dental care services and can be rest assured that you will receive the best dental treatment and care at SmileSphere.... </p>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <h2>Useful Links</h2>
+                        <ul class="list-unstyled link-list">
+                            <li><a ui-sref="about" href="aboutus.html">About us</a><i class="fa fa-angle-right"></i></li>
+                            <li><a ui-sref="portfolio" href="#/portfolio">Portfolio</a><i class="fa fa-angle-right"></i></li>
+                            <li><a ui-sref="products" href="#/products">Latest jobs</a><i class="fa fa-angle-right"></i></li>
+                            <li><a ui-sref="gallery" href="#/gallery">Pricing</a><i class="fa fa-angle-right"></i></li>
+                            <li><a ui-sref="contact" href="contactus.html">Contact us</a><i class="fa fa-angle-right"></i></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4 col-sm-12 map-img">
+                        <h2>Contact Us</h2>
+                        <address class="md-margin-bottom-40">
+                            BlueDart Hosting <br>
+                            765th Boulevard, <br>
+                            Rochester, CA <br>
+                            Phone: +1 831 143 556 <br>
+                            Email: <a href="mailto:smilesphere3@gmail.com" class="">smilesphere3@gmail.com</a><br>
+                            Web: <a href="https://smarteyeapps.com/" class="">www.bluedart.in</a>
+                        </address>
+                    </div>
+                </div>
+            </div>
+            
+        </footer>
+        <div class="copy">
+            <div class="container">
+                <a href="https://www.smarteyeapps.com/">2019 &copy; All Rights Reserved | Designed and Developed by Smarteyeapps</a>
+                
+                <span>
+                    <a><i class="fab fa-github"></i></a>
+                    <a><i class="fab fa-google-plus-g"></i></a>
+                    <a><i class="fab fa-pinterest-p"></i></a>
+                    <a><i class="fab fa-twitter"></i></a>
+                    <a><i class="fab fa-facebook-f"></i></a>
+                </span>
+            </div>
+        </div>
+    
+     
+    </body>
+
+    <script src="{% static "assets/js/jquery-3.2.1.min.js" %}"></script>
+    <script src="{% static "assets/js/popper.min.js" %}"></script>
+    <script src="{% static "assets/js/bootstrap.bundle.min.js" %}"></script>
+    <script src="{% static "assets/plugins/scroll-fixed/jquery-scrolltofixed-min.js" %}"></script>
+    <script src="{% static "assets/plugins/testimonial/js/owl.carousel.min.js" %}"></script>
+    <script src="{% static "assets/js/script.js" %}"></script>
+    
+    </html>

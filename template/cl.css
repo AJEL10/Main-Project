@@ -1,0 +1,98 @@
+/* Combined CSS styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.input-container {
+    margin-bottom: 15px;
+}
+
+.label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.button-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Styles for the location columns */
+.location-columns {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* Styles for the country select */
+#country {
+    flex: 1; /* This allows it to take up equal space in the container */
+    margin-right: 5px; /* Add some spacing between select elements */
+}
+
+/* Styles for the state select */
+#state {
+    flex: 2; /* This allows it to take up twice the space of the country select */
+    margin-right: 5px; /* Add some spacing between select elements */
+}
+
+/* Styles for the district select */
+#district {
+    flex: 3; /* This allows it to take up three times the space of the country select */
+    margin-right: 5px; /* Add some spacing between select elements */
+}
+
+/* Style for the pincode input */
+#pincode {
+    flex: 1; /* This allows it to take up equal space in the container */
+}
