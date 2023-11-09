@@ -1,4 +1,4 @@
-{% load static %}
+  {% load static %}
 <!doctype html>
 <html lang="en">
 
@@ -424,7 +424,12 @@
             .copy {
                 text-align: center;
             }
+
         }
+        #search-input {
+            width: 200px; /* Set the desired width */
+            height: 30px; /* Set the desired height */
+            padding: 5px; /* Add padding to make it more visually appealing */
     </style>
 </head>
 
@@ -449,8 +454,10 @@
                             <li><a href="blog.html">Blog</a></li>
                             <li><a href="contactus.html">Contact Us</a></li>
                             <li><a href="location.html">Find Clinic</a></li>
+                            <input type="text" id="search-input" placeholder="Search...">
+                            <div id="search-results"></div>
+
                             <!-- Add the Logout option below -->
-                            <li class="logout"><a href="logout.html" style="color: red;">Logout</a></li>
                         </ul>
                         
                     </div>
@@ -464,7 +471,7 @@
             <div class="col-md-6 left-col">
                 <h6>Hospital Center</h6>
                 <h1>We Provide Best Dental Care</h1>
-                <a href="signin.html">LOGIN</a>
+                <a href="admin_doctor_patient_card.html">LOGIN</a>
             </div>
             <div class="col-md-6 right-col">
                 <img src="{% static "assets/images/dental-cleaning-980x654.jpeg" %}" alt="">
@@ -693,7 +700,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <p>&copy; 2023 SmileSphere. All rights reserved. | Design by <a href="https://www.example.com/"
-                            target="_blank">Your Name</a></p>
+                            target="_blank">Ajel Varghese John</a></p>
                 </div>
             </div>
         </div>
@@ -703,6 +710,38 @@
     <script src="{% static "assets/js/bootstrap.min.js" %}"></script>
     <script src="{% static "assets/js/owl.carousel.min.js" %}"></script>
     <script src="{% static "assets/js/main.js" %}"></script>
+    <script>
+        const searchInput = document.getElementById('search-input');
+        const searchButton = document.getElementById('search-button');
+        const searchResults = document.getElementById('search-results');
+
+        searchInput.value = sessionStorage.getItem('searchQuery') || '';
+
+        function performSearch() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const contentToSearch = document.body.innerText.toLowerCase();
+
+            if (searchTerm.length === 0) {
+                searchResults.innerHTML = '';
+                return;
+            }
+
+            const searchRegex = new RegExp(searchTerm, 'g');
+            const matches = contentToSearch.match(searchRegex);
+
+            if (matches) {
+                searchResults.innerHTML = `Found ${matches.length} match(es).`;
+            } else {
+                searchResults.innerHTML = 'No matches found.';
+            }
+
+            sessionStorage.setItem('searchQuery', searchTerm);
+        }
+
+        searchButton.addEventListener('click', performSearch);
+        searchInput.addEventListener('input', performSearch);
+        performSearch();bg 
+    </script>
 </body>
 
 </html>

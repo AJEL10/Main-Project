@@ -1,0 +1,134 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Admin Dashboard</title>
+
+    <!-- External CSS and JavaScript resources -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'style3.css' %}">
+
+    <!-- Inline CSS -->
+    <style>
+        /* Add any additional styles here */
+    </style>
+</head>
+<body>
+    <!-- Sidebar menu -->
+    <nav class="menu" tabindex="0">
+        <div class="smartphone-menu-trigger"></div>
+        <header class="avatar">
+            <img src="{% static 'images/adminpropic.png' %}" />
+            <br><br>
+            <h6>Admin</h6>
+            <h2>{{ request.user.first_name }}</h2>
+        </header>
+        <ul>
+            <li tabindex="0" class="icon-dashboard">
+                <a style="color: white; text-decoration: none;" href="/admin-dashboard">
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li tabindex="0" class="icon-customers">
+                <a style="color: white; text-decoration: none;" href="/admin-doctor">
+                    <span>Doctor</span>
+                </a>
+            </li>
+            <li tabindex="0" class="icon-users">
+                <a style="color: white; text-decoration: none;" href="/admin-patient">
+                    <span>Patient</span>
+                </a>
+            </li>
+            <li tabindex="0" class="icon-calendar">
+                <a style="color: white; text-decoration: none;" href="/admin-appointment">
+                    <span>Appointment</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Main content -->
+    <main>
+        <!-- Navigation bar -->
+        <div class="bs-example">
+            <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background: #337AB7;">
+                <a href="/admin-dashboard" class="navbar-brand">HOSPITAL MANAGEMENT</a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                    <div class="navbar-nav" style="margin-left: 90%;">
+                        <a href="/logout" class="nav-item nav-link">Logout</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <!-- Content block -->
+        <br><br>
+        <div class="market-updates">
+            <!-- Doctor Card -->
+            <div class="col-md-4 market-update-gd">
+                <a href="/admin-doctor">
+                    <div class="market-update-block clr-block-1">
+                        <div class="col-md-8 market-update-left">
+                            <h3>{{ doctorcount }}</h3>
+                            <h4>Total Doctor</h4>
+                            <p>Approval Required: {{ pendingdoctorcount }}</p>
+                        </div>
+                        <div class="col-md-4 market-update-right">
+                            <i class="fa fa-user-md"></i>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Patient Card -->
+            <div class="col-md-4 market-update-gd">
+                <a href="/admin-patient">
+                    <div class="market-update-block clr-block-2">
+                        <div class="col-md-8 market-update-left">
+                            <h3>{{ patientcount }}</h3>
+                            <h4>Total Patient</h4>
+                            <p>Wants to Admit: {{ pendingpatientcount }}</p>
+                        </div>
+                        <div class="col-md-4 market-update-right">
+                            <i class="fa fa-user-o"></i>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <!-- Clinic Registration Details -->
+        <div id="clinic-registration-details">
+            {% block clinic_registration_details %}{% endblock %}
+        </div>
+        
+        <!-- Footer -->
+        <br><br><br><br>
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div style="color: #ffffff;" class="wow fadeInUp footer-copyright">
+                            <p>
+                                Copyright &copy; 2023 Developed By Ajel Varghese John
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+</body>
+</html>

@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Custom Ctrl+F Search</title>
+  <style>
+    #search-container {
+      text-align: center;
+      padding: 10px;
+    }
+
+    #search-input {
+      width: 300px;
+      padding: 5px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div id="search-container">
+    <label for="search-input">Search: </label>
+    <input type="text" id="search-input">
+  </div>
+
+  <div id="content">
+    <p>This is some example text that you can search through using Ctrl+F.</p>
+    <p>Feel free to add more content here.</p>
+  </div>
+
+  <script>
+    const searchInput = document.getElementById('search-input');
+    const content = document.getElementById('content');
+    let searchText = '';
+
+    searchInput.addEventListener('input', () => {
+      searchText = searchInput.value;
+      highlightMatches();
+    });
+
+    function highlightMatches() {
+      const text = content.innerHTML;
+      const highlightedText = text.replace(new RegExp(searchText, 'gi'), match => `<span style="background-color: yellow">${match}</span>`);
+      content.innerHTML = highlightedText;
+    }
+  </script>
+</body>
+</html>

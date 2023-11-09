@@ -178,14 +178,11 @@
         <form id="signup-form" method="POST" action="signup">
             
             <!-- Add Dental Clinic-specific fields -->
-            <div class="form-group">
-                <select id="role" name="role" required>
-                    <option value="patient" selected>Patient</option>
-                    <option value="dentist">Dentist</option>
-                    <option value="staff">Staff</option>
-                </select>
-            </div>
+            <form method="post" action="{% url 'signup' %}">
+                <!-- Form fields here -->
+            </form>
             
+
             <div class="form-group name-group">
                 <input type="text" id="fname" name="fname" placeholder="First Name" required>
                 <span id="fname-error" class="error-message"></span>
@@ -216,7 +213,7 @@
                 <span id="confirm-password-error" class="error-message"></span>
             </div>
             
-            <button type="submit" class="submit-btn" id="signup-btn">Sign Up</button>
+            <button type="submit" class="submit-btn" id="signup-btn">Submit</button>
             <span id="success-message" class="success-message"></span>
         </form>
         

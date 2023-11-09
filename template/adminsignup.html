@@ -1,0 +1,503 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>SmileSphere</title>
+    <link rel="shortcut icon" href="{% static "assets/images/fav.png" %}" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="{% static "assets/images/fav.jpg" %}">
+    <link rel="stylesheet" href="{% static "assets/css/bootstrap.min.css" %}">
+    <link rel="stylesheet" href="{% static "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" %}">
+    <link rel="stylesheet" href="{% static "assets/css/all.min.css" %}">
+    <link rel="stylesheet" href="{% static "assets/plugins/testimonial/css/owl.carousel.min.css" %}">
+    <link rel="stylesheet" href="{% static "assets/plugins/testimonial/css/owl.theme.min.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "assets/css/style.css" %}" />
+    <meta http-equiv="Cache-Control" content="no-store" />
+
+    <style>
+        /* Add your CSS styles here */
+
+        /* Common styles */
+        body {
+            font-family: 'Ubuntu', sans-serif;
+        }
+
+        /* Header styles */
+        header {
+            background-color: #fff;
+            padding: 10px 0;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .head-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logocol h1 {
+            font-size: 24px;
+            color: brown;
+        }
+
+        .navcol ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+        }
+
+        .navcol li {
+            margin-right: 20px;
+        }
+
+        .navcol a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        /* Slider styles */
+        .slider {
+            background: url('{% static "assets/images/dental-cleaning-980x654.jpeg" %}') center/cover no-repeat;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+        }
+
+        .slid-row {
+            padding: 0 15px;
+        }
+
+        .left-col {
+            flex: 1;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .left-col h6 {
+            font-size: 14px;
+            color: brown;
+            margin-bottom: 10px;
+        }
+
+        .left-col h1 {
+            font-size: 36px;
+            margin: 10px 0;
+        }
+
+        .left-col a {
+            display: inline-block;
+            background-color: brown;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .right-col img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Services styles */
+        .services {
+            background-color: #f5f5f5;
+            padding: 60px 0;
+        }
+
+        .section-title h2 {
+            font-size: 24px;
+            margin-bottom: 30px;
+            color: #333;
+            text-align: center;
+        }
+
+        .section-title p {
+            font-size: 16px;
+            color: #666;
+            text-align: center;
+        }
+
+        .servic-row {
+            margin-top: 30px;
+        }
+
+        .servic-col {
+            padding: 20px;
+        }
+
+        .servcover {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .servcover img {
+            max-width: 80px;
+            margin-bottom: 20px;
+        }
+
+        .servcover h4 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .servcover p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Testimonial styles */
+        .testimonial-container {
+            background-color: #fff;
+            padding: 60px 0;
+        }
+
+        .testimonial {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial .pic img {
+            max-width: 80px;
+            border-radius: 50%;
+        }
+
+        .testimonial .description {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .testimonial .title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* About section styles */
+        .about-container {
+            background-color: #f5f5f5;
+            padding: 60px 0;
+        }
+
+        .aboutlefft h2 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .aboutlefft p {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .aboutlefft ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .aboutlefft ul li {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .imgright img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Blog section styles */
+        .blog {
+            background-color: #fff;
+            padding: 60px 0;
+        }
+
+        .blog h2 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .blog p {
+            font-size: 16px;
+            color: #666;
+            text-align: center;
+        }
+
+        .blog-row {
+            margin-top: 30px;
+        }
+
+        .blogcol {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .blogcol img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .blogcol span {
+            font-size: 14px;
+            color: brown;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .blogcol h4 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        /* Footer styles */
+        .footer {
+            background-color: #f5f5f5;
+            padding: 60px 0;
+        }
+
+        .footer h2 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .footer p {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .link-list li {
+            list-style: none;
+            margin-bottom: 10px;
+        }
+
+        .link-list li a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .map-img {
+            text-align: right;
+        }
+
+        /* Copy section styles */
+        .copy {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .copy a {
+            text-decoration: none;
+            color: #fff;
+            margin: 0 10px;
+        }
+
+        /* Media queries */
+        @media (max-width: 767px) {
+            /* Adjust styles for smaller screens */
+            .head-container {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .logocol {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            .logocol h1 {
+                font-size: 20px;
+            }
+
+            .navcol {
+                text-align: center;
+            }
+
+            .navcol ul {
+                flex-direction: column;
+            }
+
+            .navcol li {
+                margin: 10px 0;
+            }
+
+            .slider {
+                min-height: 400px;
+            }
+
+            .left-col {
+                padding: 10px;
+            }
+
+            .left-col h1 {
+                font-size: 28px;
+                margin: 10px 0;
+            }
+
+            .left-col a {
+                font-size: 12px;
+                padding: 8px 15px;
+            }
+
+            .right-col img {
+                max-width: 100%;
+                height: auto;
+            }
+
+            .servic-col {
+                padding: 10px;
+            }
+
+            .servcover h4 {
+                font-size: 16px;
+            }
+
+            .servcover p {
+                font-size: 12px;
+            }
+
+            .testimonial .description {
+                font-size: 12px;
+                margin-bottom: 10px;
+            }
+
+            .testimonial .title {
+                font-size: 14px;
+            }
+
+            .aboutlefft h2 {
+                font-size: 20px;
+            }
+
+            .aboutlefft p {
+                font-size: 14px;
+            }
+
+            .aboutlefft ul li {
+                font-size: 12px;
+            }
+
+            .blog h2 {
+                font-size: 20px;
+                margin-bottom: 20px;
+            }
+
+            .blog p {
+                font-size: 14px;
+            }
+
+            .blogcol span {
+                font-size: 12px;
+            }
+
+            .blogcol h4 {
+                font-size: 16px;
+            }
+
+            .map-img {
+                text-align: center;
+            }
+
+            .copy {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container-fluid head-container">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 logocol">
+                        <h1 class="m-0 text-uppercase" style="color: brown;">SMILESPHERE</h1>
+                        <a class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                            <i class="fas fa-bars"></i>
+                        </a>
+                    </div>
+                    <div id="navbarNavDropdown" class="col-md-9 d-none d-md-block navcol">
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="aboutus.html">About Us</a></li>
+                            <li><a href="service.html">Service</a></li>
+                            <li><a href="blog.html">Blog</a></li>
+                            <li><a href="contactus.html">Contact Us</a></li>
+                            <li><a href="location.html">Find Clinic</a></li>
+                            <!-- Add the Logout option below -->
+                            <li class="logout"><a href="{% url 'logout' %}" style="color: red;">Logout</a></li>
+
+                            <li class="chatbot"><a href="https://chat-app-2b9287.zapier.app/smilechat" style="color: red;">chat</a></li>
+                        </ul>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+<body>
+
+
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
+
+
+
+
+  <!--- signup page for admin by admin(sumit)  ---------->
+  <center>
+    <h1>Welcome Admin</h1><form class="line-form">
+    <label for="sign-in-email" class="offscreen">Email</label>
+    <input type="text" id="sign-in-email" class="input input-email" placeholder="Email">
+    <label for="sign-in-password" class="offscreen">Password</label>
+    <input type="password" class="input input-password" placeholder="Password">
+    <input type="submit" value="Sign In" id="line-form-submit" class="button button-dark-blue" onClick="return false;">
+  </form></center>
+
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
+  {% include "footer.html" %}
+</body>
+
+</html>
