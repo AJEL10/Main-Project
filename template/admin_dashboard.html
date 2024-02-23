@@ -1,0 +1,313 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0px;
+        }
+        /* Modal styles */
+        .modal-container {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: white;
+            border-radius: 5px;
+            padding: 20px;
+            width: 300px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .modal-footer {
+            margin-top: 20px;
+            text-align: right;
+        }
+
+        .modal-footer button {
+            padding: 5px 10px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        .card-dash {
+        width: 50%;
+    padding: 2rem;
+    box-shadow: 0px 0px 12px #5353538c;
+    border-radius: 1rem;
+    margin-top: 3rem;
+    }
+    .bg-header {
+        width: 100%;
+    position: fixed;
+    background-color: #ffffff;
+    height: 8rem;
+    }
+    .pat-dash-header {
+        display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    }
+    .dash-body-cntr {
+        display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 8rem;
+    padding-bottom: 4rem;
+    }
+    .created-dt {
+        display: flex;
+    justify-content: end;
+    }
+    .pagination-c {
+        display: flex;
+    margin-top: 2rem;
+    gap: 2rem;
+    justify-content: end;
+    width: 50%;
+    }
+    
+
+    .ml-2 {
+        margin-left: 2rem;
+    }
+    .accept-btn {
+            background-color: #27ae60;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .reject-btn {
+            background-color: #e74c3c;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        /* Add hover effects */
+        .accept-btn:hover, .reject-btn:hover {
+            opacity: 0.8;
+        }
+        
+        /* Add margin between buttons */
+        .btn-container > button {
+            margin-right: 10px;
+        }
+
+         
+        .filter-btn {
+            background-color: #783ce7;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        /* Add hover effects */
+        .filter-btn:hover {
+            opacity: 0.8;
+        }
+
+        .page-btn {
+            background-color: #d52063;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        /* Add hover effects */
+        .page-btn:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-header">
+        <h2 class="ml-2">Admin Dashboard</h2>
+    <div class="pat-dash-header">
+    <!-- Filter Form -->
+    <form method="GET">
+        <label for="date"><strong>Filter by Date : </strong></label>
+        <input type="date" name="date">
+        <label for="status"><strong>Filter by Status : </strong></label>
+        <select name="status">
+            <option value="">All</option>
+            <option value="1">Pending</option>
+            <option value="2">Accepted</option>
+            <option value="3">Rejected</option>
+        </select>
+        <button class="filter-btn" type="submit">Filter</button>
+    </form>
+    <a href="{% url 'index2' %}">
+        <button class="filter-btn">Abort the page</button>
+    </a>
+    </div>
+    </div>
+    
+   
+
+    <div class="dash-body-cntr">
+    {% if no_appointments %}
+        <p>No appointments found.</p>
+    {% else %}
+
+
+        <!-- Pagination -->
+        {% if paginator.num_pages > 1 %}
+            <div class="pagination-c">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">&laquo; First</a>
+                    <a href="?page={{ page_obj.previous_page_number }}"><button class="page-btn">Previous</button></a>
+                {% endif %}
+
+                <span>{{ page_obj.number }} / {{ paginator.num_pages }}</span>
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}"><button class="page-btn">Next</button></a>
+                    <a href="?page={{ paginator.num_pages }}">Last &raquo;</a>
+                {% endif %}
+            </div>
+        {% endif %}
+
+            {% for appointment in page_obj %}
+            <div class="card-dash">
+
+                <div>
+                    <strong>Appointment Date : </strong> {{ appointment.date }}
+                </div>
+               
+                <strong>Status : </strong>
+                {% if appointment.status == 1 or appointment.status == 3 %}
+                    <strong style="color: red">{{ appointment.get_status_display }}</strong>
+                {% elif appointment.status == 2 %}
+                    <strong style="color: green">{{ appointment.get_status_display }}</strong>
+                {% endif %}
+                
+            
+                    <p>
+                        {% if appointment.status == 2 %}
+                            <strong>Token : </strong> {{ appointment.patient_token }}
+                        {% else %}
+                            <strong>Token : </strong> Not yet accepted
+                        {% endif %}
+                    </p>
+                    
+              <div>
+                <div>
+                    <strong>Description : </strong>
+                </div>
+                <span>
+                    {{ appointment.description }}
+                </span>
+              </div>
+                <div class="created-dt">
+                    <p>  {{ appointment.created_at }}</p>
+                </div>
+
+                {% if appointment.status == 1 %}
+                        <!-- Button to trigger modal -->
+                        <button type="button" class="action-button accept-btn" onclick="showModal('acceptModal{{ appointment.id }}')">Accept</button>
+                        <button type="button" class="action-button reject-btn" onclick="showModal('rejectModal{{ appointment.id }}')">Reject</button>
+                        <!-- Modal container -->
+                        <div id="acceptModal{{ appointment.id }}" class="modal-container">
+                            <!-- Modal content -->
+                            <div class="modal-content">
+                                <p>Do you really want to accept this appointment?</p>
+                                <div class="modal-footer">
+                                    <button onclick="hideModal('acceptModal{{ appointment.id }}')">Cancel</button>
+                                    <form action="{% url 'accept_appointment' appointment.id %}" method="POST" style="display: inline;">
+                                        {% csrf_token %}
+                                        <button type="submit">Accept</button>
+                                    </form>
+                                    <label for="appointment_time">Appointment Time:</label>
+                                    <input type="time" id="appointment_time" name="appointment_time">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div id="rejectModal{{ appointment.id }}" class="modal-container">
+                            <div class="modal-content">
+                                <p>Do you really want to reject this appointment?</p>
+                                <div class="modal-footer">
+                                    <button onclick="hideModal('rejectModal{{ appointment.id }}')">Cancel</button>
+                                    <form action="{% url 'reject_appointment' appointment.id %}" method="POST" style="display: inline;">
+                                        {% csrf_token %}
+                                        <button type="submit">Reject</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+            </div>
+
+
+<!--               
+                    {{ appointment.user_email }} - 
+                    {{ appointment.date }} - {{ appointment.description }} (Status: {{ appointment.get_status_display }})
+                    <br> -->
+                 
+                    
+               
+            {% endfor %}
+                 
+
+        <!-- Pagination -->
+        {% if paginator.num_pages > 1 %}
+            <div class="pagination-c">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">&laquo; First</a>
+                    <a href="?page={{ page_obj.previous_page_number }}"><button class="page-btn">Previous</button></a>
+                {% endif %}
+
+                <span>{{ page_obj.number }} / {{ paginator.num_pages }}</span>
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}"><button class="page-btn">Next</button></a>
+                    <a href="?page={{ paginator.num_pages }}">Last &raquo;</a>
+                {% endif %}
+            </div>
+        {% endif %}
+    {% endif %}
+
+    </div>
+
+    <script>
+        // Function to show modal
+        function showModal(modalId) {
+            var modal = document.getElementById(modalId);
+            modal.style.display = "block";
+        }
+
+        // Function to hide modal
+        function hideModal(modalId) {
+            var modal = document.getElementById(modalId);
+            modal.style.display = "none";
+        }
+    </script>
+</body>
+</html>

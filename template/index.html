@@ -1,747 +1,272 @@
-  {% load static %}
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>SmileSphere</title>
-    <link rel="shortcut icon" href="{% static "assets/images/fav.png" %}" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="{% static "assets/images/fav.jpg" %}">
-    <link rel="stylesheet" href="{% static "assets/css/bootstrap.min.css" %}">
-    <link rel="stylesheet" href="{% static "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" %}">
-    <link rel="stylesheet" href="{% static "assets/css/all.min.css" %}">
-    <link rel="stylesheet" href="{% static "assets/plugins/testimonial/css/owl.carousel.min.css" %}">
-    <link rel="stylesheet" href="{% static "assets/plugins/testimonial/css/owl.theme.min.css" %}">
-    <link rel="stylesheet" type="text/css" href="{% static "assets/css/style.css" %}" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dental Clinic</title>
     <style>
-        /* Add your CSS styles here */
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-        /* Common styles */
         body {
-            font-family: 'Ubuntu', sans-serif;
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
         }
 
-        /* Header styles */
+        /* Header Styles */
         header {
-            background-color: #fff;
-            padding: 10px 0;
-            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .head-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logocol h1 {
-            font-size: 24px;
-            color: brown;
-        }
-
-        .navcol ul {
-            list-style: none;
-            padding: 0;
-            display: flex;
-        }
-
-        .navcol li {
-            margin-right: 20px;
-        }
-
-        .navcol a {
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
-        }
-
-        /* Slider styles */
-        .slider {
-            background: url('{% static "assets/images/dental-cleaning-980x654.jpeg" %}') center/cover no-repeat;
-            min-height: 500px;
-            display: flex;
-            align-items: center;
-        }
-
-        .slid-row {
-            padding: 0 15px;
-        }
-
-        .left-col {
-            flex: 1;
-            padding: 20px;
-            background-color: rgba(255, 255, 255, 0.8);
-        }
-
-        .left-col h6 {
-            font-size: 14px;
-            color: brown;
-            margin-bottom: 10px;
-        }
-
-        .left-col h1 {
-            font-size: 36px;
-            margin: 10px 0;
-        }
-
-        .left-col a {
-            display: inline-block;
-            background-color: brown;
-            color: #fff;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            font-size: 14px;
-        }
-
-        .right-col img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        /* Services styles */
-        .services {
-            background-color: #f5f5f5;
-            padding: 60px 0;
-        }
-
-        .section-title h2 {
-            font-size: 24px;
-            margin-bottom: 30px;
-            color: #333;
-            text-align: center;
-        }
-
-        .section-title p {
-            font-size: 16px;
-            color: #666;
-            text-align: center;
-        }
-
-        .servic-row {
-            margin-top: 30px;
-        }
-
-        .servic-col {
-            padding: 20px;
-        }
-
-        .servcover {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            text-align: center;
-            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .servcover img {
-            max-width: 80px;
-            margin-bottom: 20px;
-        }
-
-        .servcover h4 {
-            font-size: 18px;
-            margin-bottom: 10px;
-            color: #333;
-        }
-
-        .servcover p {
-            font-size: 14px;
-            color: #666;
-        }
-
-        /* Testimonial styles */
-        .testimonial-container {
-            background-color: #fff;
-            padding: 60px 0;
-        }
-
-        .testimonial {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            text-align: center;
-            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .testimonial .pic img {
-            max-width: 80px;
-            border-radius: 50%;
-        }
-
-        .testimonial .description {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 20px;
-        }
-
-        .testimonial .title {
-            font-size: 16px;
-            font-weight: bold;
-            color: #333;
-        }
-
-        /* About section styles */
-        .about-container {
-            background-color: #f5f5f5;
-            padding: 60px 0;
-        }
-
-        .aboutlefft h2 {
-            font-size: 24px;
-            color: #333;
-            margin-bottom: 20px;
-        }
-
-        .aboutlefft p {
-            font-size: 16px;
-            color: #666;
-            margin-bottom: 20px;
-        }
-
-        .aboutlefft ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .aboutlefft ul li {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 10px;
-        }
-
-        .imgright img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        /* Blog section styles */
-        .blog {
-            background-color: #fff;
-            padding: 60px 0;
-        }
-
-        .blog h2 {
-            font-size: 24px;
-            color: #333;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
-        .blog p {
-            font-size: 16px;
-            color: #666;
-            text-align: center;
-        }
-
-        .blog-row {
-            margin-top: 30px;
-        }
-
-        .blogcol {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            text-align: center;
-            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .blogcol img {
-            max-width: 100%;
-            height: auto;
-            margin-bottom: 20px;
-        }
-
-        .blogcol span {
-            font-size: 14px;
-            color: brown;
-            margin-bottom: 10px;
-            display: block;
-        }
-
-        .blogcol h4 {
-            font-size: 18px;
-            margin-bottom: 10px;
-            color: #333;
-        }
-
-        /* Footer styles */
-        .footer {
-            background-color: #f5f5f5;
-            padding: 60px 0;
-        }
-
-        .footer h2 {
-            font-size: 24px;
-            color: #333;
-            margin-bottom: 20px;
-        }
-
-        .footer p {
-            font-size: 16px;
-            color: #666;
-            margin-bottom: 20px;
-        }
-
-        .link-list li {
-            list-style: none;
-            margin-bottom: 10px;
-        }
-
-        .link-list li a {
-            text-decoration: none;
-            color: #333;
-        }
-
-        .map-img {
-            text-align: right;
-        }
-
-        /* Copy section styles */
-        .copy {
-            background-color: #333;
+            background-color: #007bff;
             color: #fff;
             padding: 20px 0;
             text-align: center;
         }
 
-        .copy a {
-            text-decoration: none;
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        /* Main Content Styles */
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding-bottom: 6rem;
+            padding-left: 20px;
+            padding-right: 20px;
+
+        }
+
+        .section {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .box {
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .box p {
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #333;
             color: #fff;
-            margin: 0 10px;
+            text-align: center;
+            padding: 20px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
         }
 
-        /* Media queries */
-        @media (max-width: 767px) {
-            /* Adjust styles for smaller screens */
-            .head-container {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
-
-            .logocol {
-                text-align: center;
-                margin-bottom: 20px;
-            }
-
-            .logocol h1 {
-                font-size: 20px;
-            }
-
-            .navcol {
-                text-align: center;
-            }
-
-            .navcol ul {
-                flex-direction: column;
-            }
-
-            .navcol li {
-                margin: 10px 0;
-            }
-
-            .slider {
-                min-height: 400px;
-            }
-
-            .left-col {
-                padding: 10px;
-            }
-
-            .left-col h1 {
-                font-size: 28px;
-                margin: 10px 0;
-            }
-
-            .left-col a {
-                font-size: 12px;
-                padding: 8px 15px;
-            }
-
-            .right-col img {
-                max-width: 100%;
-                height: auto;
-            }
-
-            .servic-col {
-                padding: 10px;
-            }
-
-            .servcover h4 {
-                font-size: 16px;
-            }
-
-            .servcover p {
-                font-size: 12px;
-            }
-
-            .testimonial .description {
-                font-size: 12px;
-                margin-bottom: 10px;
-            }
-
-            .testimonial .title {
-                font-size: 14px;
-            }
-
-            .aboutlefft h2 {
-                font-size: 20px;
-            }
-
-            .aboutlefft p {
-                font-size: 14px;
-            }
-
-            .aboutlefft ul li {
-                font-size: 12px;
-            }
-
-            .blog h2 {
-                font-size: 20px;
-                margin-bottom: 20px;
-            }
-
-            .blog p {
-                font-size: 14px;
-            }
-
-            .blogcol span {
-                font-size: 12px;
-            }
-
-            .blogcol h4 {
-                font-size: 16px;
-            }
-
-            .map-img {
-                text-align: center;
-            }
-
-            .copy {
-                text-align: center;
-            }
-
+        footer p {
+            font-size: 1rem;
         }
-        #search-input {
-            width: 200px; /* Set the desired width */
-            height: 30px; /* Set the desired height */
-            padding: 5px; /* Add padding to make it more visually appealing */
+
+        .faq-section {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        .faq-question {
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        .faq-answer {
+            font-size: 1rem;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        /* Accordion Styles */
+        .accordion {
+            border-top: 1px solid #ddd;
+        }
+
+        .accordion-item {
+            border-bottom: 1px solid #ddd;
+            padding: 1.6rem;
+        }
+
+        .accordion-item:last-child {
+            border-bottom: none;
+        }
+
+        .accordion-item:hover {
+            background-color: #f3f3f3;
+        }
+
+        .active .faq-answer {
+            display: block;
+        }
+        .txt-cntr {
+            text-align: center;
+        }
+        .button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.login-button,
+.register-button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 0 10px;
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: #fff;
+    background-color: #28a745; /* Greenish color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-button:hover,
+.register-button:hover {
+    background-color: #218838; /* Darker shade of green */
+}
+.mt-2 {
+    margin-top: 2rem;
+}
     </style>
 </head>
-
 <body>
+
     <header>
-        <div class="container-fluid head-container">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-3 logocol">
-                        <h1 class="m-0 text-uppercase" style="color: brown;">SMILESPHERE</h1>
-                        <a class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
-                            aria-label="Toggle navigation">
-                            <i class="fas fa-bars"></i>
-                        </a>
-                    </div>
-                    <div id="navbarNavDropdown" class="col-md-9 d-none d-md-block navcol">
-                        <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="aboutus.html">About Us</a></li>
-                            <li><a href="service.html">Service</a></li>
-                            <li><a href="blog.html">Blog</a></li>
-                            <li><a href="contactus.html">Contact Us</a></li>
-                            <li><a href="location.html">Find Clinic</a></li>
-                            <input type="text" id="search-input" placeholder="Search...">
-                            <div id="search-results"></div>
-
-                            <!-- Add the Logout option below -->
-                        </ul>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
+        <h1>Welcome to SmileSphere Dental Services</h1>
+        <p>Here you can find all your appropriate dental clinics</p>
     </header>
+    
 
-    <div class="slider container-fluid">
-        <div class="row slid-row">
-            <div class="col-md-6 left-col">
-                <h6>Hospital Center</h6>
-                <h1>We Provide Best Dental Care</h1>
-                <a href="admin_doctor_patient_card.html">LOGIN</a>
-            </div>
-            <div class="col-md-6 right-col">
-                <img src="{% static "assets/images/dental-cleaning-980x654.jpeg" %}" alt="">
-            </div>
+    <div class="section">
+        <h2 class="mt-2">Please login to book an appointment!</h2>
+        <div class="button-container">
+            <a href="{% url 'patient_login' %}" class="login-button">Login Now</a>
+            <a href="{% url 'patient_register' %}" class="register-button">Register Now</a>
         </div>
     </div>
 
-    <!-- Services Starts Here -->
+    
 
-    <section class="services container-fluid">
-        <div class="container">
-            <div class="row section-title">
-                <h2>Our Services</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi semper in magna quis tincidunt. Donec at
-                    nisi et eros blandit elementum fermentum eget augue</p>
-            </div>
-            <div class="servic-row row">
-                <div class="servic-col col-md-4">
-                    <div class="servcover">
-                        <img src="{% static "assets/images/icon/001.png" %}" alt="">
-                        <h4>Dental Implants</h4>
-                        <p>The implant fixture is first placed, so that it is likely to osseointegrate, then a dental
-                            prosthetic is added.</p>
-                    </div>
+    <div class="container">
+        <div class="section">
+            <h2>Our Services</h2>
+            <div class="main-content">
+                <div class="box">
+                    <h3>Teeth Cleaning</h3>
+                    <p>We offer professional teeth cleaning services to remove plaque and tartar buildup, promoting better oral health.</p>
                 </div>
-                <div class="servic-col col-md-4">
-                    <div class="servcover">
-                        <img src="{% static "assets/images/icon/002.png" %}" alt="">
-                        <h4>Maxillofacial Surgery</h4>
-                        <p>The implant fixture is first placed, so that it is likely to osseointegrate, then a dental
-                            prosthetic is added.</p>
-                    </div>
+                <div class="box">
+                    <h3>Fillings</h3>
+                    <p>Our skilled dentists provide tooth-colored fillings to repair cavities and restore the strength and appearance of your teeth.</p>
                 </div>
-                <div class="servic-col col-md-4">
-                    <div class="servcover">
-                        <img src="{% static "assets/images/icon/003.png" %}" alt="">
-                        <h4>Endodontics</h4>
-                        <p>The implant fixture is first placed, so that it is likely to osseointegrate, then a dental
-                            prosthetic is added.</p>
-                    </div>
-                </div>
-                <div class="servic-col col-md-4">
-                    <div class="servcover">
-                        <img src="{% static "assets/images/icon/004.png" %}" alt="">
-                        <h4>Intervention Dentistry</h4>
-                        <p>The implant fixture is first placed, so that it is likely to osseointegrate, then a dental
-                            prosthetic is added.</p>
-                    </div>
-                </div>
-                <div class="servic-col col-md-4">
-                    <div class="servcover">
-                        <img src="{% static "assets/images/icon/005.png" %}" alt="">
-                        <h4>Braces</h4>
-                        <p>The implant fixture is first placed, so that it is likely to osseointegrate, then a dental
-                            prosthetic is added.</p>
-                    </div>
-                </div>
-                <div class="servic-col col-md-4">
-                    <div class="servcover">
-                        <img src="{% static "assets/images/icon/006.png" %}" alt="">
-                        <h4>Teeth Whitening</h4>
-                        <p>The implant fixture is first placed, so that it is likely to osseointegrate, then a dental
-                            prosthetic is added.</p>
-                    </div>
+                <div class="box">
+                    <h3>Root Canals</h3>
+                    <p>We perform root canal treatments to save infected teeth, relieving pain and preserving your natural smile.</p>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Testimonial Starts Here -->
-
-    <section class="testimonial-container pb-5">
-        <div class="container">
-            <div class="section-title row">
-                <h2>Testimonial</h2>
-                <p>Take a look at what people say about us</p>
-            </div>
-            <div class="row mt-5">
-                <div class="col-md-offset-2 float-auto col-md-12">
-                    <div id="testimonial-slider" class="owl-carousel">
-                        <div class="testimonial">
-                            <div class="pic">
-                                <img src="{% static "assets/images/testimonial/member-01.jpg" %}" alt="">
-                            </div>
-                            <p class="description">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda deleniti dolor ipsum
-                                molestias mollitia ut. Aliquam aperiam corporis cumque debitis delectus dignissimos. Lorem
-                                ipsum dolor sit amet, consectetur.
-                            </p>
-                            <h3 class="title">williamson
-                                <span class="post"> - Developer</span>
-                            </h3>
-                        </div>
-
-                        <div class="testimonial">
-                            <div class="pic">
-                                <img src="{% static "assets/images/testimonial/member-02.jpg" %}" alt="">
-                            </div>
-                            <p class="description">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda deleniti dolor ipsum
-                                molestias mollitia ut. Aliquam aperiam corporis cumque debitis delectus dignissimos. Lorem
-                                ipsum dolor sit amet, consectetur.
-                            </p>
-                            <h3 class="title">Kristina
-                                <span class="post"> - Teacher</span>
-                            </h3>
-                        </div>
-
-                        <div class="testimonial">
-                            <div class="pic">
-                                <img src="{% static "assets/images/testimonial/member-03.jpg" %}" alt="">
-                            </div>
-                            <p class="description">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda deleniti dolor ipsum
-                                molestias mollitia ut. Aliquam aperiam corporis cumque debitis delectus dignissimos. Lorem
-                                ipsum dolor sit amet, consectetur.
-                            </p>
-                            <h3 class="title">Kristina
-                                <span class="post"> - Teacher</span>
-                            </h3>
-                        </div>
-                    </div>
+        <div class="section">
+            <h2>Meet Our Team</h2>
+            <div class="main-content">
+                <div class="box">
+                    <h3>Dr. Smith</h3>
+                    <p>Dr. Smith is an experienced dentist with a passion for providing exceptional care to patients of all ages.</p>
+                </div>
+                <div class="box">
+                    <h3>Dr. Johnson</h3>
+                    <p>Dr. Johnson specializes in cosmetic dentistry and is dedicated to helping patients achieve beautiful, healthy smiles.</p>
+                </div>
+                <div class="box">
+                    <h3>Dental Hygienists</h3>
+                    <p>Our friendly dental hygienists are committed to educating patients about proper oral hygiene and preventive care.</p>
                 </div>
             </div>
         </div>
-    </section>
+        
 
-    <div class="about-container container-fluid">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 aboutlefft">
-                    <h2>We are providing treatment by some experienced physicians</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do ei usmod tempor incididunt.enim
-                        minim veniam.</p>
-                    <ul>
-                        <li><i class="fa fa-check"></i> We have experienced doctors.</li>
-                        <li><i class="fa fa-check"></i> Best medical service is our main goal.</li>
-                        <li><i class="fa fa-check"></i> We have customer support center.</li>
-                        <li><i class="fa fa-check"></i> Provide world class treatment.</li>
-                        <li><i class="fa fa-check"></i> We have the modern labs.</li>
-                    </ul>
+        <h2 class="txt-cntr">FAQ ( Frequently Asked Questions )</h2>
+        <div class="faq-section">
+        
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="faq-question">What dental services do you offer?</div>
+                    <div class="faq-answer">We offer a comprehensive range of dental services including cleanings, fillings, root canals, extractions, crowns, bridges, and more.</div>
                 </div>
-                <div class="col-md-6 imgright">
-                    <img src="{% static "assets/images/img01.jpg" %}" alt="">
+                <div class="accordion-item">
+                    <div class="faq-question">How often should I visit the dentist?</div>
+                    <div class="faq-answer">It is generally recommended to visit the dentist for a routine check-up and cleaning every six months to maintain optimal oral health.</div>
+                </div>
+                <div class="accordion-item">
+                    <div class="faq-question">Do you accept insurance?</div>
+                    <div class="faq-answer">Yes, we accept most dental insurance plans. Please contact our office for more information about insurance coverage and payment options.</div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Blog Start Here -->
+    <footer>
+        <p>&copy; 2024 SmileSphere. All rights reserved.</p>
+    </footer>
 
-    <div class="blog container-fluid">
-        <div class="container">
-            <div class="section-title row">
-                <h2>Our Latest Blog</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sollicitudin nisi id consequat bibendum.
-                    Phasellus at convallis elit. In purus velit, vehicula eget scelerisque facilisis, faucibus sed arcu.</p>
-            </div>
-            <div class="row blog-row">
-                <div class="col-md-4 blogcol">
-                    <img src="{% static "assets/images/blog/blog-01.jpg" %}" alt="">
-                    <span>July 15, 2023</span>
-                    <h4>How to Maintain Your Oral Hygiene</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et semper nulla. Sed suscipit arcu ligula,
-                        quis efficitur tortor mollis sit amet. Etiam suscipit nisi sed quam consectetur.</p>
-                </div>
-                <div class="col-md-4 blogcol">
-                    <img src="{% static "assets/images/blog/blog-02.jpg" %}" alt="">
-                    <span>July 10, 2023</span>
-                    <h4>Top 5 Foods for Healthy Teeth</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et semper nulla. Sed suscipit arcu ligula,
-                        quis efficitur tortor mollis sit amet. Etiam suscipit nisi sed quam consectetur.</p>
-                </div>
-                <div class="col-md-4 blogcol">
-                    <img src="{% static "assets/images/blog/blog-03.jpg" %}" alt="">
-                    <span>July 05, 2023</span>
-                    <h4>Benefits of Regular Dental Checkups</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et semper nulla. Sed suscipit arcu ligula,
-                        quis efficitur tortor mollis sit amet. Etiam suscipit nisi sed quam consectetur.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <section class="footer container-fluid">
-        <div class="container">
-            <div class="row section-title">
-                <h2>Contact Us</h2>
-                <p>Have any questions or want to discuss something? Contact us anytime!</p>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <form>
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Your Name</label>
-                            <input type="text" class="form-control" id="name" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Your Email</label>
-                            <input type="email" class="form-control" id="email" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="message" class="form-label">Your Message</label>
-                            <textarea class="form-control" id="message" rows="4" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
-                </div>
-                <div class="col-md-6">
-                    <ul class="link-list">
-                        <li><i class="bi bi-geo-alt"></i> 1234 Elm Street, New York, NY 10001</li>
-                        <li><i class="bi bi-envelope"></i> info@smilesphere.com</li>
-                        <li><i class="bi bi-phone"></i> +1 (123) 456-7890</li>
-                        <li><i class="bi bi-clock"></i> Mon - Fri: 9:00 AM - 5:00 PM</li>
-                    </ul>
-                    <div class="map-img">
-                        <!-- Add your map here -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div class="copy">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <p>&copy; 2023 SmileSphere. All rights reserved. | Design by <a href="https://www.example.com/"
-                            target="_blank">Ajel Varghese John</a></p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script src="{% static "assets/js/jquery.min.js" %}"></script>
-    <script src="{% static "assets/js/bootstrap.min.js" %}"></script>
-    <script src="{% static "assets/js/owl.carousel.min.js" %}"></script>
-    <script src="{% static "assets/js/main.js" %}"></script>
     <script>
-        const searchInput = document.getElementById('search-input');
-        const searchButton = document.getElementById('search-button');
-        const searchResults = document.getElementById('search-results');
-
-        searchInput.value = sessionStorage.getItem('searchQuery') || '';
-
-        function performSearch() {
-            const searchTerm = searchInput.value.toLowerCase();
-            const contentToSearch = document.body.innerText.toLowerCase();
-
-            if (searchTerm.length === 0) {
-                searchResults.innerHTML = '';
-                return;
-            }
-
-            const searchRegex = new RegExp(searchTerm, 'g');
-            const matches = contentToSearch.match(searchRegex);
-
-            if (matches) {
-                searchResults.innerHTML = `Found ${matches.length} match(es).`;
-            } else {
-                searchResults.innerHTML = 'No matches found.';
-            }
-
-            sessionStorage.setItem('searchQuery', searchTerm);
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', function() {
+                const parent = this.parentElement;
+                parent.classList.toggle('active');
+            });
+        });
+        window.onload = function() {
+            window.history.forward(); // Disable back button
         }
-
-        searchButton.addEventListener('click', performSearch);
-        searchInput.addEventListener('input', performSearch);
-        performSearch();bg 
     </script>
-</body>
 
+
+</body>
 </html>

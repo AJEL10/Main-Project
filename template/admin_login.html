@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Login</title>
+    <style>
+        body {
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .disp-flex-cntr {
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+        }
+        .flex-col-dir {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .gap-1rem {
+            gap: 1rem;
+        }
+        .height-d0 {
+            height: 1.5rem;
+        }
+        .card-login {
+            padding: 2rem;
+    box-shadow: 0px 0px 111px #c6c6c6;
+    border-radius: 2rem;
+        }
+        .button-b {
+            background-color: #27a327;
+    color: #ffffff;
+    font-weight: 600;
+    padding: 5px 1rem 5px 1rem;
+    border-radius: 0.5rem;
+
+        }
+        .txt-dec {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="disp-flex-cntr">
+        <form method="POST" class="flex-col-dir gap-1rem card-login">
+            {% csrf_token %}
+            <h2>Admin Login</h2>
+            <input class="height-d0" type="email" name="email" required placeholder="Email">
+            <div style="position: relative;">
+                <input class="height-d0" type="password" name="password" id="password" required placeholder="Password">
+                <span id="togglePassword" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); cursor: pointer;">
+                    Show
+                </span>
+            </div>
+          
+            <button class="button-b" type="submit">Login</button>
+        </form>
+    </div>
+
+    <script>
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordField = document.getElementById('password');
+
+        togglePassword.addEventListener('click', function() {
+            const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordField.setAttribute('type', type);
+            togglePassword.textContent = type === 'password' ? 'Show' : 'Hide';
+        });
+    </script>
+</body>
+</html>
