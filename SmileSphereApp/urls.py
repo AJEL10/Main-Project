@@ -18,20 +18,30 @@ from django.contrib import admin
 from django.urls import path
 from django.contrib.auth import views as auth_views
 from . import views
+from django.contrib.auth.views import LoginView, LogoutView
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.index, name='index'),
-    path('signin.html',views.signin, name='signin'),
-    path('signup.html',views.signup, name='signup'),
-    path('service.html',views.service, name='service'),
-    path('blog.html',views.blog, name='blog'),
-    path('contactus.html',views.contactus, name='contactus'),
-    path('location.html',views.location, name='location'),
-    path('forgot.html',views.forgot, name='forgot')
+    path('index2/',views.index2, name='index2'),
+    path('register/', views.patient_register, name='patient_register'),
+    path('login/', views.patient_login, name='patient_login'),
+    path('dashboard/', views.dashboard, name='dashboard'),
+    path('appointment/', views.patient_appointment, name='patient_appointment'),
+    # path('new-appointment/', views.new_appointment, name='new_appointment'),
+    path('reset-password/', views.reset_password, name='reset_password'),
+
+    path('admin-login/', views.admin_login, name='admin_login'),
+    path('admin-dashboard/', views.admin_dashboard, name='admin_dashboard'),
+    path('accept-appointment/<int:appointment_id>/', views.accept_appointment, name='accept_appointment'),
+    path('reject-appointment/<int:appointment_id>/', views.reject_appointment, name='reject_appointment'), 
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    
+    # path('admin-register/', views.admin_register, name='admin_register'),
+
+
 ]
-
-
 
 
 
