@@ -8,7 +8,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.hashers import make_password, check_password
-from .models import Appointment, Patient, SuperAdmin
+from .models import Appointment, Clinic, Patient, SuperAdmin
 from django.shortcuts import render
 from django.core.paginator import Paginator
 import random
@@ -19,6 +19,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout
+
+
+
 
 
 
@@ -244,13 +247,13 @@ def accept_appointment(request, appointment_id):
     appointment = get_object_or_404(Appointment, id=appointment_id)
     appointment.status = 2  # Assuming 2 represents 'Accepted' status
     appointment.save()
+    #appointment_time = request.POST['appointment_time']
     return redirect('admin_dashboard')
 
 def reject_appointment(request, appointment_id):
     appointment = get_object_or_404(Appointment, id=appointment_id)
     appointment.status = 3  # Assuming 3 represents 'Rejected' status
     appointment.save()
-    appointment_time = request.POST['appointment_time']
     return redirect('admin_dashboard')
 
 
@@ -276,6 +279,165 @@ def reset_password(request):
         return redirect('dashboard')  # Redirect to the patient dashboard or any other desired page
 
     return render(request, 'reset_password.html')
+
+def clinic_register(request):
+    if request.method == 'POST':
+        # Process the form data
+        # Save clinic, doctors, and surgeons
+        pass
+    else:
+        print('hai')
+    return render(request, 'clinic_register.html')
+    
+def Login_cards(request):
+    return render(request, 'Login_cards.html')
+def Register_cards(request):
+    return render(request, 'Register_cards.html')
+
+
+
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from django.contrib.auth.hashers import make_password
+from .models import Clinic, Doctor, Surgeon
+
+def clinic_register(request):
+    if request.method == 'POST':
+        # Extract clinic details from the form
+        clinic_name = request.POST.get('clinic_name')
+        clinic_latitude = request.POST.get('clinic_latitude')
+        clinic_longitude = request.POST.get('clinic_longitude')
+        clinic_photo = request.FILES.get('clinic_photo')
+
+        # Concatenate latitude and longitude into a location string
+        clinic_location = f"{clinic_latitude}, {clinic_longitude}"
+
+        password = request.POST.get('password')
+        password_confirm = request.POST.get('password_confirm')
+
+        if password != password_confirm:
+            messages.error(request, 'Passwords do not match.')
+            return render(request, 'clinic_registration.html')
+
+        if len(password) < 8:
+            messages.error(request, 'Password should be at least 8 characters long.')
+            return render(request, 'clinic_registration.html')
+
+        hashed_password = make_password(password)
+
+        # Create the clinic
+        clinic = Clinic(name=clinic_name, location=clinic_location, photo=clinic_photo, password=hashed_password)
+        clinic.save()
+
+        # Extract doctor details from the form
+        doctor_name = request.POST.get('doctor_name')
+        doctor_specialty = request.POST.get('doctor_specialty')
+        doctor_available_days = request.POST.get('doctor_available_days')
+        doctor_photo = request.FILES.get('doctor_photo')
+
+        # Create the doctor
+        doctor = Doctor(name=doctor_name, specialty=doctor_specialty, available_days=doctor_available_days,
+                        photo=doctor_photo, clinic=clinic)
+        doctor.save()
+
+        # Extract surgeon details from the form
+        surgeon_name = request.POST.get('surgeon_name')
+        surgeon_specialty = request.POST.get('surgeon_specialty')
+        surgeon_available_days = request.POST.get('surgeon_available_days')
+        surgeon_photo = request.FILES.get('surgeon_photo')
+
+        # Create the surgeon
+        surgeon = Surgeon(name=surgeon_name, specialty=surgeon_specialty, available_days=surgeon_available_days,
+                          photo=surgeon_photo, clinic=clinic)
+        surgeon.save()
+
+        messages.success(request, 'Clinic, doctor, and surgeon registration successful.')
+        return redirect('clinic_login')  # Assuming there's a view for clinic login
+    else:
+        return render(request, 'clinic_register.html')
+
+
+    
+from django.shortcuts import render, redirect
+from django.contrib import messages
+
+def clinic_login(request):
+    if request.method == 'POST':
+        clinic_name = request.POST.get('clinic_name')
+        password = request.POST.get('password')
+
+        # Perform authentication here, check if clinic_name and password are valid
+        # For example:
+        if clinic_name == 'valid_name' and password == 'valid_password':
+            # Successful login
+            # Replace 'dashboard' with the URL name of the clinic dashboard
+            return redirect('dashboard')  
+        else:
+            messages.error(request, 'Invalid clinic name or password.')
+            return redirect('clinic_login')
+
+    return render(request, 'clinic_login.html')
+
+
+
+from django.shortcuts import render
+
+def clinic_dashboard(request):
+    if request.method == 'POST':
+        clinic_name = request.POST.get('clinic_name')
+        clinic_location = request.POST.get('clinic_location')
+        clinic_latitude = request.POST.get('clinic_latitude')
+        clinic_longitude = request.POST.get('clinic_longitude')
+        
+
+        # Fetch details of doctors
+        doctors = []
+        for i in range(1, 6):  # Assuming maximum 5 doctors can be added
+            doctor_name = request.POST.get(f'doctor_name_{i}')
+            if doctor_name:
+                doctor_specialty = request.POST.get(f'doctor_specialty_{i}')
+                doctor_available_days = request.POST.get(f'doctor_available_days_{i}')
+                doctor_photo = request.FILES.get(f'doctor_photo_{i}')
+                doctors.append({
+                    'name': doctor_name,
+                    'specialty': doctor_specialty,
+                    'available_days': doctor_available_days,
+                    'photo': doctor_photo
+                })
+
+        # Fetch details of surgeons
+        surgeons = []
+        for i in range(1, 6):  # Assuming maximum 5 surgeons can be added
+            surgeon_name = request.POST.get(f'surgeon_name_{i}')
+            if surgeon_name:
+                surgeon_specialty = request.POST.get(f'surgeon_specialty_{i}')
+                surgeon_available_days = request.POST.get(f'surgeon_available_days_{i}')
+                surgeon_photo = request.FILES.get(f'surgeon_photo_{i}')
+                surgeons.append({
+                    'name': surgeon_name,
+                    'specialty': surgeon_specialty,
+                    'available_days': surgeon_available_days,
+                    'photo': surgeon_photo
+                })
+
+        context = {
+            'clinic_name': clinic_name,
+            'clinic_location': clinic_location,
+            'clinic_latitude': clinic_latitude,
+            'clinic_longitude': clinic_longitude,
+            'doctors': doctors,
+            'surgeons': surgeons,
+        }
+
+        return render(request, 'clinic_dashboard.html', context)
+    else:
+        # Handle GET requests or invalid requests
+        return render(request, 'clinic_dashboard.html')
+
+
+
+
+
 
 
 

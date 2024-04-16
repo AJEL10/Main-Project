@@ -25,7 +25,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.index, name='index'),
     path('index2/',views.index2, name='index2'),
-    path('register/', views.patient_register, name='patient_register'),
+    path('patient_register/', views.patient_register, name='patient_register'),
     path('login/', views.patient_login, name='patient_login'),
     path('dashboard/', views.dashboard, name='dashboard'),
     path('appointment/', views.patient_appointment, name='patient_appointment'),
@@ -37,6 +37,11 @@ urlpatterns = [
     path('accept-appointment/<int:appointment_id>/', views.accept_appointment, name='accept_appointment'),
     path('reject-appointment/<int:appointment_id>/', views.reject_appointment, name='reject_appointment'), 
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('clinic_register/', views.clinic_register, name='clinic_register'),
+    path('Register_cards/', views.Register_cards, name='Register_cards'),
+    path('Login_cards/', views.Login_cards, name='Login_cards'),
+    path('clinic_login', views.clinic_login, name='clinic_login'),
+    path('clinic_dashboard', views.clinic_dashboard, name='clinic_dashboard'),
     
     # path('admin-register/', views.admin_register, name='admin_register'),
 
