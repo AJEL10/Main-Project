@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clickable Cards</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f2f2f2;
+    }
+
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    } 
+
+    .card {
+        width: 200px;
+        height: 300px;
+        border-radius: 10px;
+        margin: 20px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+        position: relative;
+        cursor: pointer;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+    }
+
+    .card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .card .label {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+
+    .card a {
+        display: block;
+        width: 100%;
+        height: 100%;
+        text-decoration: none;
+        color: inherit;
+    }
+</style>
+</head> 
+<body>
+<div class="container">
+    <h1 class="heading">Who Do you Want to Register as:</h1>   
+
+    <div class="card" onclick="window.location.href='{% url 'clinic_register'%}'">
+        <img src="C:\Users\ajelv\Downloads\856977.jpg" alt="Clinic">
+        <div class="label">Clinic</div>
+    </div>
+
+    <div class="card" onclick="window.location.href='{% url 'patient_register' %}'">
+        <img src="C:\Users\ajelv\Downloads\1166009.jpg" alt="Patient">
+        <div class="label">Patient</div>
+    </div>
+
+</div>
+
+</body>
+</html>

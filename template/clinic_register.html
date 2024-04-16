@@ -1,0 +1,214 @@
+<!-- clinic_registration.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clinic Registration</title>
+    <style>
+        /* Styles for the card layout */
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+            width: 50%;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            padding: 2px 16px;
+        }
+
+        /* Style for form elements */
+        input[type=text], input[type=file] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type=submit] {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>Clinic Registration Form</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="container">
+            <label for="clinic_name"><b>Clinic Name:</b></label>
+            <input type="text" id="clinic_name" name="clinic_name" required>
+
+            <label for="clinic_photo"><b>Clinic Photo:</b></label>
+            <input type="file" id="clinic_photo" name="clinic_photo" accept="image/jpeg" required>
+
+            <label for="clinic_location"><b>Clinic Location:</b></label>
+            <input type="text" id="clinic_location" name="clinic_location" required>
+
+            <button type="button" onclick="getLocation()">Get Current Location</button>
+            <input type="hidden" id="clinic_latitude" name="clinic_latitude" required>
+            <input type="hidden" id="clinic_longitude" name="clinic_longitude" required>
+
+            <br><label for="password"><b>Password:</b></label>
+            <input type="password" id="password" name="password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}" title="Password must contain at least 8 characters, including one uppercase letter, one lowercase letter, one number, and one special character">
+
+            <br><label for="password_confirm"><b>Confirm Password:</b></label>
+            <input type="password" id="password_confirm" name="password_confirm" required>
+
+
+
+            <hr>
+
+            <h3>Doctors:</h3>
+            <div id="doctors">
+                <div class="doctor">
+                    <label for="doctor_name"><b>Name:</b></label>
+                    <input type="text" id="doctor_name" name="doctor_name[]" required>
+
+                    <label for="doctor_specialty"><b>Specialty:</b></label>
+                    <input type="text" id="doctor_specialty" name="doctor_specialty[]" required>
+
+                    <label for="doctor_available_days"><b>Available Days:</b></label>
+                    <input type="text" id="doctor_available_days" name="doctor_available_days[]" required>
+
+                    <label for="doctor_photo"><b>Photo:</b></label>
+                    <input type="file" id="doctor_photo" name="doctor_photo[]" accept="image/jpeg" required>
+                </div>
+            </div>
+            <button type="button" onclick="addDoctor()">Add Doctor</button>
+
+            <hr>
+
+            <h3>Surgeons:</h3>
+            <div id="surgeons">
+                <div class="surgeon">
+                    <label for="surgeon_name"><b>Name:</b></label>
+                    <input type="text" id="surgeon_name" name="surgeon_name[]" required>
+
+                    <label for="surgeon_specialty"><b>Specialty:</b></label>
+                    <input type="text" id="surgeon_specialty" name="surgeon_specialty[]" required>
+
+                    <label for="surgeon_available_days"><b>Available Days:</b></label>
+                    <input type="text" id="surgeon_available_days" name="surgeon_available_days[]" required>
+
+                    <label for="surgeon_photo"><b>Photo:</b></label>
+                    <input type="file" id="surgeon_photo" name="surgeon_photo[]" accept="image/jpeg" required>
+                </div>
+            </div>
+            <button type="button" onclick="addSurgeon()">Add Surgeon</button>
+
+            <input type="submit" value="Submit">
+            <!-- Line to prompt for login -->
+            <p>If you are already registered, <a href="{% url 'clinic_login' %}">login here</a>.</p>
+            
+            <!-- Cancel button to go back -->
+            <button type="button" onclick="window.history.back()">Cancel</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    function addDoctor() {
+        var doctorsContainer = document.getElementById('doctors');
+        var doctorTemplate = document.createElement('div');
+        doctorTemplate.innerHTML = `
+            <div class="doctor">
+                <label for="doctor_name"><b>Name:</b></label>
+                <input type="text" id="doctor_name" name="doctor_name[]" required>
+
+                <label for="doctor_specialty"><b>Specialty:</b></label>
+                <input type="text" id="doctor_specialty" name="doctor_specialty[]" required>
+
+                <label for="doctor_available_days"><b>Available Days:</b></label>
+                <input type="text" id="doctor_available_days" name="doctor_available_days[]" required>
+
+                <label for="doctor_photo"><b>Photo:</b></label>
+                <input type="file" id="doctor_photo" name="doctor_photo[]" accept="image/jpeg" required>
+            </div>
+        `;
+        doctorsContainer.appendChild(doctorTemplate);
+    }
+
+    function addSurgeon() {
+        var surgeonsContainer = document.getElementById('surgeons');
+        var surgeonTemplate = document.createElement('div');
+        surgeonTemplate.innerHTML = `
+            <div class="surgeon">
+                <label for="surgeon_name"><b>Name:</b></label>
+                <input type="text" id="surgeon_name" name="surgeon_name[]" required>
+
+                <label for="surgeon_specialty"><b>Specialty:</b></label>
+                <input type="text" id="surgeon_specialty" name="surgeon_specialty[]" required>
+
+                <label for="surgeon_available_days"><b>Available Days:</b></label>
+                <input type="text" id="surgeon_available_days" name="surgeon_available_days[]" required>
+
+                <label for="surgeon_photo"><b>Photo:</b></label>
+                <input type="file" id="surgeon_photo" name="surgeon_photo[]" accept="image/jpeg" required>
+            </div>
+        `;
+        surgeonsContainer.appendChild(surgeonTemplate);
+    }
+
+
+    function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: 0, lng: 0},
+            zoom: 15
+        });
+        
+        var marker = new google.maps.Marker({
+            position: {lat: 0, lng: 0},
+            map: map,
+            draggable: true
+        });
+        
+        // Update latitude and longitude input fields on marker drag
+        google.maps.event.addListener(marker, 'dragend', function(event) {
+            document.getElementById('clinic_latitude').value = event.latLng.lat();
+            document.getElementById('clinic_longitude').value = event.latLng.lng();
+        });
+    }
+ 
+
+    
+    var x = document.getElementById("clinic_location");
+
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else { 
+            x.value = "Geolocation is not supported by this browser.";
+        }
+    }
+
+    function showPosition(position) {
+        x.value = position.coords.latitude + ', ' + position.coords.longitude;
+        document.getElementById('clinic_latitude').value = position.coords.latitude;
+        document.getElementById('clinic_longitude').value = position.coords.longitude;
+    }
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+{ % load static % }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clinic Dashboard</title>
+</head>
+<body>
+    <h2>Clinic Dashboard</h2>
+    <p><strong>Clinic Name:</strong> {{ clinic_name }}</p>
+    <p><strong>Location:</strong> {{ clinic_location }}</p>
+    <p><strong>Latitude:</strong> {{ clinic_latitude }}</p>
+    <p><strong>Longitude:</strong> {{ clinic_longitude }}</p>
+    <p><strong>Photo:</strong> {{ clinic_photo }}</p>
+    <!-- Include other details as needed -->
+
+    <!-- Add this code inside the form -->
+    <h3>Doctors:</h3>
+    {% for i in doctors %}
+    <div class="doctor">
+        <label for="doctor_name_{{ forloop.counter }}"><b>Name:</b></label>
+        <input type="text" id="doctor_name_{{ forloop.counter }}" name="doctor_name_{{ forloop.counter }}">
+    
+        <label for="doctor_specialty_{{ forloop.counter }}"><b>Specialty:</b></label>
+        <input type="text" id="doctor_specialty_{{ forloop.counter }}" name="doctor_specialty_{{ forloop.counter }}">
+    
+        <label for="doctor_available_days_{{ forloop.counter }}"><b>Available Days:</b></label>
+        <input type="text" id="doctor_available_days_{{ forloop.counter }}" name="doctor_available_days_{{ forloop.counter }}">
+    </div>
+    {% endfor %}
+    <button type="button" onclick="addDoctor()">Add Doctor</button>
+
+    <hr>
+    
+    <h3>Surgeons:</h3>
+    {% for i in surgeons %}
+    <div class="surgeon">
+        <label for="surgeon_name_{{ forloop.counter }}"><b>Name:</b></label>
+        <input type="text" id="surgeon_name_{{ forloop.counter }}" name="surgeon_name_{{ forloop.counter }}">
+    
+        <label for="surgeon_specialty_{{ forloop.counter }}"><b>Specialty:</b></label>
+        <input type="text" id="surgeon_specialty_{{ forloop.counter }}" name="surgeon_specialty_{{ forloop.counter }}">
+    
+        <label for="surgeon_available_days_{{ forloop.counter }}"><b>Available Days:</b></label>
+        <input type="text" id="surgeon_available_days_{{ forloop.counter }}" name="surgeon_available_days_{{ forloop.counter }}">
+    </div>
+    {% endfor %}
+
+    <button type="button" onclick="addSurgeon()">Add Surgeon</button>
+</body>
+</html>
+ 
+
+

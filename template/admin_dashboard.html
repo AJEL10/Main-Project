@@ -152,9 +152,9 @@
     <div class="pat-dash-header">
     <!-- Filter Form -->
     <form method="GET">
-        <label for="date"><strong>Filter by Date : </strong></label>
+        <label for="date"><strong>Filter appointments by Date : </strong></label>
         <input type="date" name="date">
-        <label for="status"><strong>Filter by Status : </strong></label>
+        <label for="status"><strong>Filter appointments by Status : </strong></label>
         <select name="status">
             <option value="">All</option>
             <option value="1">Pending</option>
@@ -163,7 +163,7 @@
         </select>
         <button class="filter-btn" type="submit">Filter</button>
     </form>
-    <a href="{% url 'index2' %}">
+    <a href="{% url 'index' %}">
         <button class="filter-btn">Abort the page</button>
     </a>
     </div>

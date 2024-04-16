@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Success</title>
+</head>
+<body>
+    <h1>Clinic Registration Successful</h1>
+    <h2>{{ clinic.name }}</h2>
+    <img src="{{ clinic.photo.url }}" alt="{{ clinic.name }} Photo">
+    
+    <h3>Doctors:</h3>
+    <ul>
+        {% for doctor in clinic.doctor_set.all %}
+        <li>
+            {{ doctor.name }} - {{ doctor.specialty }}
+            <img src="{{ doctor.photo.url }}" alt="{{ doctor.name }} Photo">
+        </li>
+        {% endfor %}
+    </ul>
+    
+    <h3>Surgeons:</h3>
+    <ul>
+        {% for surgeon in clinic.surgeon_set.all %}
+        <li>
+            {{ surgeon.name }} - {{ surgeon.specialty }}
+            <img src="{{ surgeon.photo.url }}" alt="{{ surgeon.name }} Photo">
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
